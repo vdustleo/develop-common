@@ -4,12 +4,12 @@
 
 import imaplib
 import email
-#ÉèÖÃÃüÁî´°¿ÚÊä³öÊ¹ÓÃÖĞÎÄ±àÂë
+#è®¾ç½®å‘½ä»¤çª—å£è¾“å‡ºä½¿ç”¨ä¸­æ–‡ç¼–ç 
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-#±£´æÎÄ¼ş·½·¨£¨¶¼ÊÇ±£´æÔÚÖ¸¶¨µÄ¸ùÄ¿Â¼ÏÂ£©
+#ä¿å­˜æ–‡ä»¶æ–¹æ³•ï¼ˆéƒ½æ˜¯ä¿å­˜åœ¨æŒ‡å®šçš„æ ¹ç›®å½•ä¸‹ï¼‰
 def savefile(filename, data, path):
     try:
         filepath = path + filename
@@ -21,20 +21,20 @@ def savefile(filename, data, path):
     f.write(data)
     f.close()
    
-#×Ö·û±àÂë×ª»»·½·¨
+#å­—ç¬¦ç¼–ç è½¬æ¢æ–¹æ³•
 def my_unicode(s, encoding):
     if encoding:
         return unicode(s, encoding)
     else:
         return unicode(s)
 
-#»ñµÃ×Ö·û±àÂë·½·¨
+#è·å¾—å­—ç¬¦ç¼–ç æ–¹æ³•
 def get_charset(message, default="ascii"):
     #Get the message charset
     return message.get_charset()
     return default
 
-#½âÎöÓÊ¼ş·½·¨£¨Çø·Ö³öÕıÎÄÓë¸½¼ş£©
+#è§£æé‚®ä»¶æ–¹æ³•ï¼ˆåŒºåˆ†å‡ºæ­£æ–‡ä¸é™„ä»¶ï¼‰
 def parseEmail(msg, mypath):
     mailContent = None
     contenttype = None
@@ -44,7 +44,7 @@ def parseEmail(msg, mypath):
             contenttype = part.get_content_type()   
             filename = part.get_filename()
             charset = get_charset(part)
-            #ÊÇ·ñÓĞ¸½¼ş
+            #æ˜¯å¦æœ‰é™„ä»¶
             if filename:
                 h = email.Header.Header(filename)
                 dh = email.Header.decode_header(h)
@@ -57,7 +57,7 @@ def parseEmail(msg, mypath):
                         fname = fname.decode(encodeStr, charset)
                 data = part.get_payload(decode=True)
                 print('Attachment : ' + fname)
-                #±£´æ¸½¼ş
+                #ä¿å­˜é™„ä»¶
                 if fname != None or fname != '':
                     savefile(fname, data, mypath)            
             else:
@@ -71,10 +71,10 @@ def parseEmail(msg, mypath):
                     mailContent = part.get_payload(decode=True).decode(charset)         
     return  (mailContent, suffix)
 
-#»ñÈ¡ÓÊ¼ş·½·¨
+#è·å–é‚®ä»¶æ–¹æ³•
 def getMail(mailhost, account, password, diskroot, port = 993, ssl = 1):
     mypath = diskroot + ':\\'
-    #ÊÇ·ñ²ÉÓÃssl
+    #æ˜¯å¦é‡‡ç”¨ssl
     if ssl == 1:
         imapServer = imaplib.IMAP4_SSL(mailhost, port)
     else:
@@ -82,7 +82,7 @@ def getMail(mailhost, account, password, diskroot, port = 993, ssl = 1):
     imapServer.login(account, password)
     print imapServer.list()
     imapServer.select()
-    #ÓÊ¼ş×´Ì¬ÉèÖÃ£¬ĞÂÓÊ¼şÎªUnseen
+    #é‚®ä»¶çŠ¶æ€è®¾ç½®ï¼Œæ–°é‚®ä»¶ä¸ºUnseen
     #Message statues = 'All,Unseen,Seen,Recent,Answered, Flagged'
     resp, items = imapServer.search(None, "Unseen")
     number = 1
@@ -106,7 +106,7 @@ def getMail(mailhost, account, password, diskroot, port = 993, ssl = 1):
        strsub = 'Subject : ' + sub
              
        mailContent, suffix = parseEmail(msg, mypath)
-       #ÃüÁî´°ÌåÊä³öÓÊ¼ş»ù±¾ĞÅÏ¢
+       #å‘½ä»¤çª—ä½“è¾“å‡ºé‚®ä»¶åŸºæœ¬ä¿¡æ¯
        print '\n'
        print 'No : ' + str(number)
        print strfrom
@@ -116,7 +116,7 @@ def getMail(mailhost, account, password, diskroot, port = 993, ssl = 1):
        print 'Content:'
        print mailContent
        '''
-       #±£´æÓÊ¼şÕıÎÄ
+       #ä¿å­˜é‚®ä»¶æ­£æ–‡
        if (suffix != None and suffix != '') and (mailContent != None and mailContent != ''):
            savefile(str(number) + suffix, mailContent, mypath)
            number = number + 1
@@ -126,8 +126,8 @@ def getMail(mailhost, account, password, diskroot, port = 993, ssl = 1):
 
 
 if __name__ =="__main__":
-    #ÓÊ¼ş±£´æÔÚeÅÌ
+    #é‚®ä»¶ä¿å­˜åœ¨eç›˜
     mypath ='e'
     print 'begin to get email...'
-    getMail('imap.163.com', 'vdust.leo@163.com', 'chatin163', mypath, 143, 0)
+    getMail('imap.163.com', '*****@163.com', '******', mypath, 143, 0)
     print 'the end of get email.'
