@@ -1,0 +1,105 @@
+﻿<html>
+	<head>
+		<title>
+        test form jquery.validation!
+		</title>
+       <style type="text/css">
+       input{
+       display:block;
+       }
+       .invalid{
+       border: 1px red solid;
+       }
+       label.error{
+       position:absolute;
+       margin-left:160px;
+       margin-top:-22px;
+       color:red;
+       }
+</style>
+
+	</head>
+	<body>
+
+		<form id="test_form" method="get" action="?" >
+        <input type="text" name="aa" value="" id=""  />
+        <input type="text" name="bb" value="" id=""  />
+        <input type="text" name="cc" value="" id=""  />
+        <input type="submit" value="submit"/>
+        </form>
+        <!--<div class="error"><span></span></div>-->
+        <label class="error"></label>
+		
+		
+	</body>
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript">
+    jQuery.validator.setDefaults({
+      debug: true,
+      success: "valid"
+    });
+    
+    
+    
+    $("#test_form").validate({
+    
+      invalidHandler: function(event, validator) {
+        // 'this' refers to the form
+        var errors = validator.numberOfInvalids();
+        if (errors) {
+          var message = errors == 1
+            ? 'You missed 1 field. It has been highlighted'
+            : 'You missed ' + errors + ' fields. They have been highlighted';
+          $("div.error span").html(message);
+          $("div.error").show();
+        } else {
+          $("div.error").hide();
+        }
+      },
+      
+      /*
+  groups: {
+    username: "aa bb cc"
+  },*/
+  errorPlacement: function(error, element) {
+    if (element.attr("name") == "aa" || element.attr("name") == "bb" || element.attr("name") == "cc" ) {
+      error.insertAfter(element);
+    } else {
+      error.insertAfter(element);
+    }
+        
+  },
+ 
+    rules:{
+        aa:{
+            required:true,
+            minlength:3,
+            maxlength:9
+        },
+        bb:{
+            required:true,
+            rangelength: [2, 6]
+        },
+        cc: {
+            required:true
+            }
+    },
+    
+    messages:{
+        aa:{
+            required: "请输入该字段",
+            minlength: $.validator.format("表单的长度必须大于{0}。"),
+            maxlength: $.validator.format("表单的长度必须小于{0}。")
+        },
+        bb:{
+            required: "请输入该字段",
+            rangelength:$.validator.format("表单的长度必须在{0}和{1}之间。")
+        },
+        cc: {
+            required: "请输入该字段",
+            }
+    }
+    });
+</script>
+</html>

@@ -1,0 +1,19 @@
+div #robot{
+	width:150px;
+	height:150px;
+	background-image:
+	url(../images/robot_strip.gif);
+	background-repeat:no-repeat;
+	background-position:0;
+}
+
+div #soccerBall{
+	background-image: url(../images/soccer_ball.png);
+	background-repeat: no-repeat;
+	height: 125px;
+	left:0;
+	margin-top:25px;
+	position: absolute;
+	top: 75px;
+	width:125px;
+}

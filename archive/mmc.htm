@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>
+		</title>
+		<link rel="stylesheet" href="./css/myc.css" type="text/css" >
+		
+	</head>
+	<body>
+		<h1>head!</h1>
+		<p>hello,i am a test</p>
+		<p id="robot1"> hello,i am a vdust</p>
+		<div id="robot"></div>
+		<div id="soccerBall"></div>
+		<script type="text/javascript">
+			function load_script(url)
+			{
+				
+			var script= document.createElement("script");
+			script.type = "text/javascript";
+			document.getElementsByTagName("head")[0].appendChild(script); 
+			script.src = url;
+		 }
+		 load_script("public.js");
+		 load_script("other.js");
+		 load_script("animate.js");
+			</script>
+	</body>
+</html>
