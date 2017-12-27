@@ -181,5 +181,5 @@ if __name__=="__main__":
     # 
     mypath ='e'
     print 'begin to get email...'
-    getMail('imap.163.com', 'vdust.leo@163.com', '******', mypath, 143, 0)
+    getMail('imap.163.com', '*****@163.com', '******', mypath, 143, 0)
     print 'the end of get email.'    
