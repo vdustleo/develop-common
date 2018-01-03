@@ -43,6 +43,6 @@
 ```
 ## 使用第三方库poster的方法
 + PYPI: https://pypi.python.org/pypi/poster/0.8.1
-+ post source: https://bitbucket.org/chrisatlee/poster
++ post source: https://bitbucket.org/chrisatlee/poster/src
 + poster download: https://atlee.ca/software/poster/dist/0.8.1/
 + poster docs: https://atlee.ca/software/poster/
