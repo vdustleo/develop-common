@@ -42,7 +42,7 @@
             print 'http error'
 ```
 ## 使用第三方库poster的方法
-PYPI: https://pypi.python.org/pypi/poster/0.8.1
-post source: https://bitbucket.org/chrisatlee/poster
-poster download: https://atlee.ca/software/poster/dist/0.8.1/
-poster docs: https://atlee.ca/software/poster/
++ PYPI: https://pypi.python.org/pypi/poster/0.8.1
++ post source: https://bitbucket.org/chrisatlee/poster
++ poster download: https://atlee.ca/software/poster/dist/0.8.1/
++ poster docs: https://atlee.ca/software/poster/
